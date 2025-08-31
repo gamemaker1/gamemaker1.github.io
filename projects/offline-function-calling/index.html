@@ -41,9 +41,17 @@
                         <a
                             href="https://summerofcode.withgoogle.com/programs/2025/projects/rexKK7eu"
                             class="hover:underline"
-                        >a GSoC project</a>
-                        by <a href="https://gamemaker1.github.io" class="hover:underline">
-                            Vedant Kulkarni
+                        >a GSoC (2025) project</a>
+                    </i> <br />
+                    <i class="text-gray-600 text-sm">
+                        by <a
+                            href="https://gamemaker1.github.io"
+                            class="hover:underline"
+                        >Vedant Kulkarni, IIIT Hyderabad</a>
+                    </i> |
+                    <i class="text-gray-600 text-sm">
+                        <a href="mailto:gamemaker0042@gmail.com" class="hover:underline">
+                            gamemaker0042 at gmail dot com
                         </a>
                     </i>
 
@@ -88,9 +96,9 @@
                             href="https://github.com/offline-function-calling/benchmarks"
                         >benchmarks</a>, and ongoing efforts to support function
                         calling via the Ollama API in Gemma 3. The goal was to
-                        create a set of resources that demonstrates the
-                        viability of function calling with offline, open-source
-                        models, and helps developers get started with it.
+                        push the boundaries of function calling with offline,
+                        open-source models like Gemma 3, and create tools and
+                        resources to help developers get started with it.
                     </p>
 
                     <hr class="my-4" />
@@ -195,18 +203,22 @@
                                 class="text-blue-400 hover:underline"
                                 href="https://gorilla.cs.berkeley.edu/leaderboard.html"
                             >Berkeley Function Calling Leaderboard</a>, and
-                            building on them. The suite's <a
+                            building on them. This leaderboard builds on the Berkeley
+                            Function Calling Leaderboard (BFCL) by expanding its
+                            test categories to include error handling, constraint
+                            enforcement, and function synthesis. The suite's <a
                                 class="text-blue-400 hover:underline"
                                 href="https://offline-function-calling.github.io/bench/methodology/"
                             >methodology</a> systematically evaluates models
                             against 15 distinct parameters including parameter
                             transformation, error handling, composite calling,
                             parallel execution, and more, across 10 scenarios.
-                            It evaluates the models with prompts and settings
-                            that enable it to do its best, and also test the
-                            ability of the model to use the tools effectively
-                            in conversation, rather than just testing its ability
-                            to produce accurate function calls.
+                            It also evaluates the models with prompts and settings
+                            that enable it to do its best, rather than using a
+                            default prompt, and also test the ability of the model
+                            to use the tools effectively in conversation, rather
+                            than just testing its ability to produce accurate
+                            function calls.
                         </p>
                         <p class="mt-2 text-gray-700 text-sm">
                             Test execution is fully automated using <a
@@ -380,7 +392,7 @@
                         </ul>
                         <p class="mt-2 text-gray-700 text-sm">
                             Efforts were also taken to integrate the function
-                            calling capabilities of the Gema 3 models into existing
+                            calling capabilities of the Gemma 3 models into existing
                             tools such as Ollama. It was demonstrated that tool
                             calls using the Ollama API worked with the official
                             Gemma model, provided a <a
@@ -415,16 +427,14 @@
                             Fine-Tuning
                         </h3>
                         <p class="mt-2 text-gray-700 text-sm">
-                            Addressing the performance limitations of smaller,
-                            more resource-efficient models became another goal
-                            of the project, as the benchmarks revealed significant
-                            capability gaps between different parameter sizes.
-                            Benchmark results consistently showed that while
-                            larger models (12B and 27B parameters) excelled at
-                            function calling tasks, smaller variants (1B and 4B)
-                            struggled with multi-turn conversations and complex
-                            function calls, limiting their practical deployment
-                            in resource-constrained environments.
+                            I also explored the limitations of function calling
+                            in smaller, more resource-efficient models as part
+                            of the project. The benchmark results consistently
+                            showed that while larger models (12B and 27B parameters)
+                            excelled at function calling tasks, smaller variants
+                            (1B and 4B) struggled with multi-turn conversations
+                            and complex function calls, limiting their practical
+                            deployment in resource-constrained environments.
                         </p>
                         <p class="mt-2 text-gray-700 text-sm">
                             To bridge this gap, a dataset for function calling
@@ -453,10 +463,10 @@
                         <p class="mt-2 text-gray-700 text-sm">
                             I would like to thank my GSoC mentors, Omar Sanseviero,
                             Philipp Schmid, and Paige Bailey, as well as Ravin Kumar,
-                            and Gus Martins from the Google Deepmind team deeply
-                            for their invaluable guidance and feedback throughout
-                            the duration of my GSoC project. This project would not
-                            be what it is without their help.
+                            Gus Martins, Ivan Nardini, and Thomas Mesnard from the
+                            Google Deepmind team deeply for their invaluable guidance
+                            and feedback throughout the duration of my GSoC project.
+                            This project would not be what it is without their help.
                         </p>
                     </div>
                 </div>
