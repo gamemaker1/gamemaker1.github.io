@@ -65,14 +65,16 @@
 							>IIIT Hyderabad</a
 						>. I have contributed 400+ issues/PRs across 30+ repositories over
 						the past seven years - starting with my first PR for Google Code-In
-						when in 2018, to most recently working with MIT Media Lab’s Large
-						Population Models (LPM) team on their
-						<a
+						when in 2018, to working with MIT Media Lab’s Large Population
+						Models (LPM) team on their <a
 							class="text-blue-400 hover:underline"
 							href="https://lpm.media.mit.edu/docs"
-							>AgentTorch</a
-						>
-						project for differentiable agent based learning since April 2024.
+						>AgentTorch</a> project for differentiable agent based learning in
+						April 2024, and most recently with Google Deepmind to <a
+							class="text-blue-400 hover:underline"
+							href="https://lpm.media.mit.edu/docs"
+						>extend and benchmark function calling in the Gemma 3 family of models</a>
+						since May 2025.
 					</p>
 					<p class="mt-2 text-gray-700 text-sm">
 						I’m the co-maintainer for the popular node.js libraries
@@ -127,8 +129,8 @@
 							class="text-blue-400 hover:underline"
 							href="https://lu.ma/kinhufit"
 							>Sunbird DPG Tech Fusion Conference</a
-						>
-						in 2024.
+						>, Pune, in 2024. I also gave a talk on my work on AgentTorch at
+						the FOSS United Meetup, Hyderabad, in 2024.
 					</p>
 
 					<hr class="my-4" />
@@ -147,7 +149,7 @@
 								>express-rate-limit</a
 							>
 
-							<i class="text-gray-700 text-sm"> 2.7k stars, 7.6M dl/month </i>
+							<i class="text-gray-700 text-sm"> 3.1k stars, 29M dl/month </i>
 							(<a
 								href="https://github.com/express-rate-limit/express-rate-limit/pulls?q=author%3Agamemaker1"
 								class="text-blue-400 hover:underline text-sm"
@@ -184,7 +186,7 @@
 								>express-slow-down</a
 							>
 
-							<i class="text-gray-700 text-sm"> 230+ stars, 95k dl/month </i>
+							<i class="text-gray-700 text-sm"> 290+ stars, 230k dl/month </i>
 						</h4>
 						<p class="mt-1 text-gray-700 text-sm">
 							Helped with the rewrite in Typescript, and achieving feature
@@ -239,7 +241,7 @@
 								>vercel/serve</a
 							>
 
-							<i class="text-gray-700 text-sm"> 9.1k stars, 6.6M dl/month </i>
+							<i class="text-gray-700 text-sm"> 9.7k stars, 6.6M dl/month </i>
 							(<a
 								href="https://github.com/vercel/serve/pulls?q=author%3Agamemaker1"
 								class="text-blue-400 hover:underline text-sm"
@@ -260,7 +262,7 @@
 								>refined-github</a
 							>
 
-							<i class="text-gray-700 text-sm"> 22.8k stars, 80k+ users </i>
+							<i class="text-gray-700 text-sm"> 29.1k stars, 80k+ users </i>
 							(<a
 								href="https://github.com/refined-github/refined-github/pulls?q=author%3Agamemaker1"
 								class="text-blue-400 hover:underline text-sm"
@@ -469,6 +471,62 @@
 					<h2 class="text-xl robotoslab-medium mt-4 mb-2" id="creator">
 						Projects That I Have Created
 					</h2>
+
+					<div class="mb-4">
+						<h4 id="offline-function-calling" class="text-md">
+							<a
+								href="https://offline-function-calling.github.io"
+								class="text-pink-700 font-semibold underline"
+								>offline-function-calling</a
+							>
+
+							(<a
+								href="./projects/offline-function-calling"
+								class="text-blue-400 hover:underline text-sm"
+								>contributions</a
+							>)
+						</h4>
+						<p class="mt-1 text-gray-700 text-sm">
+              This project was started as part of my <a
+                  class="text-blue-400 hover:underline"
+                  href="https://summerofcode.withgoogle.com/programs/2025/projects/rexKK7eu"
+              >Google Summer of Code 2025 project with Google DeepMind</a>.
+              The primary goal was to explore, extend, and document the
+              function calling capabilities of the Gemma model family,
+              This effort included benchmarking and writing tutorials
+              and cookbooks for developers working with offline models
+              like Gemma 3.
+						</p>
+            <p class="mt-1 text-gray-700 text-sm">
+              Over 12 weeks, the project progressed from <a
+                  class="text-blue-400 hover:underline"
+                  href="https://github.com/gamemaker1/gemma3-function-calling-experiments"
+              >simple initial experiments</a> to creating a <a
+                  class="text-blue-400 hover:underline"
+                  href="https://github.com/offline-function-calling/benchmarks"
+              >comprehensive benchmarking suite</a>, to the development
+              of a <a
+                  class="text-blue-400 hover:underline"
+                  href="https://github.com/offline-function-calling/sdk"
+              >function calling SDK</a>
+              and a <a
+                  class="text-blue-400 hover:underline"
+                  href="https://github.com/offline-function-calling/cli"
+              >command-line interface</a> not unlike the Gemini CLI.
+              This effort included writing and refining <a
+                  class="text-blue-400 hover:underline"
+                  href="https://github.com/offline-function-calling/sdk/tree/main/docs/learn"
+              >tutorials</a>,
+              designing and running <a
+                  class="text-blue-400 hover:underline"
+                  href="https://github.com/offline-function-calling/benchmarks"
+              >benchmarks</a>, and ongoing efforts to support function
+              calling via the Ollama API in Gemma 3. The goal was to
+              create a set of resources that demonstrates the
+              viability of function calling with offline, open-source
+              models, and helps developers get started with it.
+            </p>
+					</div>
 
 					<div class="mb-4">
 						<h4 id="dabbu-knowledge-platform" class="text-md">
@@ -721,7 +779,9 @@
 					</p>
 					<ul class="list-disc m-4">
 						<li class="mt-1 text-gray-700 text-sm">Neurosymbolic AI</li>
-						<li class="mt-1 text-gray-700 text-sm">Time series analysis</li>
+						<li class="mt-1 text-gray-700 text-sm">
+							Multimodal tool/function calling with LLM agents
+						</li>
 						<li class="mt-1 text-gray-700 text-sm">
 							Agent based modelling involving LLMs
 						</li>
@@ -732,13 +792,7 @@
 							Causal information extraction, and creating knowledge graphs
 						</li>
 						<li class="mt-1 text-gray-700 text-sm">
-							Annotating unstructured multimodal information
-						</li>
-						<li class="mt-1 text-gray-700 text-sm">
-							Image and video generation
-						</li>
-						<li class="mt-1 text-gray-700 text-sm">
-							Frugal AI, running inference on edge TPUs and CPUs
+							Sustainable AI, running inference on edge TPUs and CPUs
 						</li>
 						<li class="mt-1 text-gray-700 text-sm">
 							Benchmarking datasets and models
@@ -746,7 +800,8 @@
 					</ul>
 
 					<p class="mt-1 text-gray-700 text-sm">
-						The following are areas that I have previously explored:
+						The following are areas that I have previously explored and
+						really loved:
 					</p>
 					<ul class="list-disc m-4">
 						<li class="mt-1 text-gray-700 text-sm">
