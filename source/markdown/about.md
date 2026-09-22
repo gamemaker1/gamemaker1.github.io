@@ -28,10 +28,9 @@ and continue to maintain them.
 
 I participated in the national
 [ONDC Grand Hackathon](/projects/#ondc-grand-hackathon) in 2022 and my
-team won a special mention award. I was invited to give a talk
-titled 'A 12 Grader's Journey to Opensource Contribution via Sunbird and
-Beckn' at the
-[Sunbird DPG Tech Fusion Conference, Pune](https://lu.ma/kinhufit),
+team won a special mention award. I was invited to give a talk titled 'A
+12 Grader's Journey to Opensource Contribution via Sunbird and Beckn' at
+the [Sunbird DPG Tech Fusion Conference, Pune](https://lu.ma/kinhufit),
 in 2024. I also gave a talk on my work on AgentTorch at the
 [FOSS United Meetup, Hyderabad](https://fossunited.org/c/hyderabad/hyd-2024-aug-archive-fbf7d1ca),
 in 2024.

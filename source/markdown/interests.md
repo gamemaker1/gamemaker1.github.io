@@ -1,6 +1,6 @@
 ## Areas of Interest
 
-These are the things I am reading about at the moment.
+These are the things I am working on at the moment.
 
 - **Mechanistic interpretability**, which means reverse engineering the
   features and circuits that neural networks learn, to understand why
