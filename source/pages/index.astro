@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content'
+import Page from '../components/Page.astro'
+import Entry from '../components/Entry.astro'
+import { categories, slugify } from '../site'
+import { Content as About } from '../markdown/about.md'
+import { Content as Interests } from '../markdown/interests.md'
+
+const entries = await getCollection('projects')
+const highlights = entries.filter((entry) => entry.data.highlight)
+---
+
+<Page title="Vedant Kulkarni">
+  <div class="profile">
+    <a
+      class="avatar-link"
+      href="#photo"
+      aria-label="Show a larger photo"
+    >
+      <img
+        src="/media/profile.jpeg"
+        alt="Vedant Kulkarni"
+        class="avatar"
+      />
+    </a>
+    <div>
+      <h1>Vedant Kulkarni</h1>
+      <div class="contacts">
+        <a href="mailto:gamemaker0042@gmail.com">mail</a>
+        <span class="sep" aria-hidden="true">
+          |
+        </span>
+        <a href="https://github.com/gamemaker1">code</a>
+        <span class="sep" aria-hidden="true">
+          |
+        </span>
+        <a href="/projects/">projects</a>
+        <span class="sep" aria-hidden="true">
+          |
+        </span>
+        <a href="/thoughts/">thoughts</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="photo">
+    <a
+      class="lightbox-backdrop"
+      href="#"
+      aria-label="Close the photo"
+    ></a>
+    <img src="/media/profile.jpeg" alt="Vedant Kulkarni" />
+  </div>
+
+  <hr />
+
+  <About />
+
+  <hr />
+
+  <h2 id="highlights">Highlights</h2>
+  <p>
+    A few of the projects I have created, maintain, or contributed to.
+    The <a href="/projects/">full list</a> has everything, from CLI
+    tools to hackathon submissions.
+  </p>
+
+  {categories.map((category) => {
+    const list = highlights
+      .filter((entry) => entry.data.category === category)
+      .sort((a, b) => a.data.order - b.data.order)
+    return (
+      list.length > 0 && (
+        <>
+          <h3 id={slugify(category)}>{category}</h3>
+          {list.map((entry) => (
+            <Entry entry={entry} />
+          ))}
+        </>
+      )
+    )
+  })}
+
+  <hr />
+
+  <Interests />
+</Page>

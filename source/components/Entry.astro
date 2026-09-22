@@ -1,0 +1,50 @@
+---
+import { render } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import { starsText, downloadsText } from '../site'
+import stats from '../stats.json'
+
+interface Props {
+  entry: CollectionEntry<'projects'>
+  // One level below the category heading above it, so the outline
+  // has no gaps.
+  level?: 3 | 4
+}
+
+const { entry, level = 4 } = Astro.props
+const Heading = `h${level}` as 'h3' | 'h4'
+const data = entry.data
+const { Content } = await render(entry)
+
+const counts = stats as Record<string, number>
+const parts: string[] = []
+if (data.role) parts.push(data.role)
+if (data.repo && counts[`github:${data.repo}`] != null)
+  parts.push(starsText(counts[`github:${data.repo}`]))
+if (data.npm && counts[`npm:${data.npm}`] != null)
+  parts.push(downloadsText(counts[`npm:${data.npm}`]))
+if (data.stats) parts.push(data.stats)
+---
+
+<div class="entry">
+  <Heading id={data.anchor}>
+    <a class="project" href={data.link}>
+      {data.name}
+    </a>
+  </Heading>
+  {parts.length > 0 && (
+    <div class="entry-meta">
+      {parts.map((part, index) => (
+        <>
+          {index > 0 && (
+            <span class="sep" aria-hidden="true">
+              |
+            </span>
+          )}
+          {part}
+        </>
+      ))}
+    </div>
+  )}
+  <Content />
+</div>

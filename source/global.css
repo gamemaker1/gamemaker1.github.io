@@ -1,0 +1,248 @@
+@import 'tailwindcss';
+
+/* The inline script in Page.astro writes data-theme onto <html>, so a
+   reader's choice wins wherever it is set. With scripting off the
+   attribute never appears, and the second block falls back to the
+   system preference. */
+@custom-variant dark {
+  &:where([data-theme='dark'], [data-theme='dark'] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(html:not([data-theme]), html:not([data-theme]) *) {
+      @slot;
+    }
+  }
+}
+
+/* One pink for every link. It clears the WCAG AA 4.5:1 contrast
+   ratio against the page behind it: 4.5:1 on white, 8.2:1 on
+   zinc-800. Project links carry weight and a full strength
+   underline rather than a second colour. */
+@theme {
+  --font-slab: 'Roboto Slab', serif;
+  --color-link: var(--color-pink-600);
+  --color-link-dark: var(--color-pink-300);
+}
+
+@layer base {
+  /* Scrollbars and form controls follow the chosen theme, or the system
+     preference when no choice has been written. */
+  html:not([data-theme]) {
+    color-scheme: light dark;
+  }
+  [data-theme='light'] {
+    color-scheme: light;
+  }
+  [data-theme='dark'] {
+    color-scheme: dark;
+  }
+  body {
+    @apply flex min-h-dvh flex-col bg-white font-slab text-gray-900 antialiased dark:bg-zinc-800 dark:text-zinc-100;
+  }
+
+  h1 {
+    @apply text-2xl leading-tight font-semibold text-balance sm:text-3xl;
+  }
+  h2 {
+    @apply mt-6 mb-1 text-xl font-medium text-balance;
+  }
+  h3 {
+    @apply mt-5 mb-1 text-lg font-medium text-balance;
+  }
+  h4 {
+    @apply text-base leading-6 font-semibold;
+  }
+  /* The first heading on a page has nothing above it to separate
+     from. */
+  h2:first-child,
+  h3:first-child {
+    @apply mt-0;
+  }
+
+  p {
+    @apply mt-2 text-base leading-7 text-pretty text-gray-700 dark:text-zinc-300;
+  }
+  ul {
+    @apply mt-2 mb-3 list-disc space-y-1 pl-5 text-base leading-7 text-gray-700 dark:text-zinc-300;
+  }
+  ol {
+    @apply mt-2 mb-3 list-decimal space-y-1 pl-5 text-base leading-7 text-gray-700 dark:text-zinc-300;
+  }
+  strong {
+    @apply font-medium text-gray-900 dark:text-zinc-100;
+  }
+  li::marker {
+    @apply text-gray-500 dark:text-zinc-500;
+  }
+
+  hr {
+    @apply my-6 border-t border-gray-200 dark:border-zinc-700;
+  }
+
+  /* Links carry the pink at normal weight. Project titles use the same
+     pink in semibold, which is what separates them. */
+  a {
+    @apply text-link underline decoration-link/40 decoration-1 underline-offset-2 dark:text-link-dark dark:decoration-link-dark/40;
+  }
+  a:hover {
+    @apply decoration-link dark:decoration-link-dark;
+  }
+
+  blockquote {
+    @apply mt-3 border-l-2 border-gray-300 pl-4 text-gray-600 italic dark:border-zinc-600 dark:text-zinc-400;
+  }
+  pre {
+    @apply mt-3 mb-3 overflow-x-auto rounded-md border border-gray-200 p-4 text-sm leading-relaxed dark:border-zinc-700;
+  }
+  code {
+    @apply font-mono text-sm;
+  }
+  :not(pre) > code {
+    @apply rounded bg-gray-100 px-1 py-0.5 dark:bg-zinc-700;
+  }
+  /* Shiki writes the light theme inline and the dark theme into CSS
+     variables. This swaps them when the page is in dark mode. */
+  [data-theme='dark'] {
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+  }
+  img {
+    @apply max-w-full;
+  }
+}
+
+@layer components {
+  /* grow pushes the footer to the bottom of the window on a short
+     page. */
+  .page {
+    @apply container mx-auto grow px-4 pt-8 pb-2;
+  }
+  /* The footer rule, the back link and the theme button. With no back
+     link the empty span still pushes the button to the right. */
+  .toolbar {
+    @apply container mx-auto px-4 pb-8;
+  }
+  .toolbar .row {
+    @apply flex items-center justify-between gap-4;
+  }
+  .toolbar a {
+    @apply text-sm;
+  }
+  .theme {
+    @apply cursor-pointer rounded border border-gray-200 px-2 py-1 text-xs text-gray-600 dark:border-zinc-700 dark:text-zinc-400;
+  }
+  .theme:hover {
+    @apply text-gray-900 dark:text-zinc-100;
+  }
+
+  /* The avatar sits above the name on a phone, with the block
+     centred. From the sm breakpoint up it moves back beside the
+     name, aligned left. */
+  /* Clicking the avatar opens the full photo. The link sets the fragment,
+     :target reveals the overlay, and the backdrop link clears it again, so
+     none of this needs a script. */
+  .avatar-link {
+    @apply block no-underline;
+  }
+  .avatar-link:hover .avatar {
+    @apply scale-105;
+  }
+  .lightbox {
+    @apply hidden;
+  }
+  .lightbox:target {
+    @apply fixed inset-0 z-10 flex items-center justify-center bg-black/70 p-6;
+  }
+  .lightbox-backdrop {
+    @apply absolute inset-0;
+  }
+  .lightbox img {
+    @apply relative w-full max-w-sm rounded-lg;
+  }
+
+  .profile {
+    @apply flex flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-4 sm:text-left;
+  }
+  .profile .contacts {
+    @apply justify-center sm:justify-start;
+  }
+  .avatar {
+    @apply h-16 w-16 rounded-full object-cover transition duration-150;
+  }
+  /* One line of small items, pipe separated: the links under the
+     site title, and the author and date under an article title. */
+  .contacts,
+  .byline,
+  .subtitle {
+    @apply mt-1 text-sm leading-5 text-gray-600 dark:text-zinc-400;
+  }
+  .contacts,
+  .byline {
+    @apply flex flex-wrap items-center gap-x-2 gap-y-1;
+  }
+  .sep {
+    @apply text-gray-300 select-none dark:text-zinc-600;
+  }
+
+  /* A bar down the left edge ties an entry's title, meta line and
+     description into one block, so the eye sees where one project
+     ends and the next begins. */
+  .entry {
+    @apply mt-4 border-l-2 border-gray-200 dark:border-zinc-700;
+  }
+  .entry:hover {
+    @apply border-link/50 dark:border-link-dark/50;
+  }
+  /* The entry title is h3 on the projects page and h4 on the home
+     page, since the category heading above it differs. Both look the
+     same. */
+  .entry :is(h3, h4) {
+    @apply my-0 text-base leading-6 font-semibold;
+  }
+  .entry :is(h3, h4, .entry-meta, p) {
+    @apply pl-3;
+  }
+  .entry p {
+    @apply mt-1;
+  }
+  .entry-meta {
+    @apply mt-1 text-sm leading-5 text-gray-500 dark:text-zinc-400;
+  }
+  .entry-meta .sep {
+    @apply mx-2;
+  }
+
+  a.project {
+    @apply font-semibold text-link decoration-link/40 dark:text-link-dark dark:decoration-link-dark/40;
+  }
+  a.project:hover {
+    @apply decoration-link dark:decoration-link-dark;
+  }
+
+  .post-list {
+    @apply mt-3 flex flex-col gap-3;
+  }
+  .post-list .date {
+    @apply block text-sm text-gray-500 dark:text-zinc-400;
+  }
+
+  .figures {
+    @apply my-4 grid grid-cols-1 gap-4 md:grid-cols-2;
+  }
+  figure {
+    @apply overflow-hidden rounded-lg border border-gray-200 dark:border-zinc-700;
+  }
+  figure img {
+    @apply block w-full;
+  }
+  figcaption {
+    @apply border-t border-gray-200 p-3 text-center text-xs leading-5 text-gray-600 dark:border-zinc-700 dark:text-zinc-400;
+  }
+}

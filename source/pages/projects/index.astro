@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content'
+import Page from '../../components/Page.astro'
+import Entry from '../../components/Entry.astro'
+import { categories, slugify } from '../../site'
+
+const entries = await getCollection('projects')
+---
+
+<Page
+  title="Projects | Vedant Kulkarni"
+  description="Everything Vedant Kulkarni has created, maintained, and contributed to."
+>
+  <h1>Projects</h1>
+  <p class="subtitle">
+    Open source work by <a href="/">Vedant Kulkarni</a>.
+  </p>
+
+  <hr />
+
+  <p>
+    Everything I have created, maintained, and contributed to, grouped
+    by category. Each entry notes which of the three it is.
+  </p>
+
+  {categories.map((category) => {
+    const list = entries
+      .filter((entry) => entry.data.category === category)
+      .sort((a, b) => a.data.order - b.data.order)
+    return (
+      list.length > 0 && (
+        <>
+          <h2 id={slugify(category)}>{category}</h2>
+          {list.map((entry) => (
+            <Entry entry={entry} level={3} />
+          ))}
+        </>
+      )
+    )
+  })}
+</Page>

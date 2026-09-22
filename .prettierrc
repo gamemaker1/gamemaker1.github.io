@@ -1,0 +1,11 @@
+{
+  "printWidth": 72,
+  "proseWrap": "always",
+  "semi": false,
+  "singleQuote": true,
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./source/global.css",
+  "overrides": [
+    { "files": "*.astro", "options": { "parser": "astro" } }
+  ]
+}

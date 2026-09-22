@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content'
+import Page from '../../components/Page.astro'
+import { formatDate } from '../../site'
+
+const posts = (await getCollection('thoughts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+---
+
+<Page
+  title="Thoughts | Vedant Kulkarni"
+  description="Occasional writing by Vedant Kulkarni."
+>
+  <h1>Thoughts</h1>
+  <p class="subtitle">
+    Occasional writing by <a href="/">Vedant Kulkarni</a>.
+  </p>
+
+  <hr />
+
+  {posts.length === 0 && <p>Nothing here yet, come back soon!</p>}
+  <div class="post-list">
+    {posts.map((post) => (
+      <div>
+        <span class="date">{formatDate(post.data.date)}</span>
+        <a class="project" href={`/thoughts/${post.id}/`}>
+          {post.data.title}
+        </a>
+      </div>
+    ))}
+  </div>
+</Page>

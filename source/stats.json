@@ -1,0 +1,20 @@
+{
+  "github:thecodrr/crayon": 61,
+  "github:timocov/dts-bundle-generator": 875,
+  "npm:dts-bundle-generator": 1569048,
+  "github:express-rate-limit/express-rate-limit": 3306,
+  "npm:express-rate-limit": 221515070,
+  "github:express-rate-limit/express-slow-down": 303,
+  "npm:express-slow-down": 608573,
+  "github:flutter/flutter": 179047,
+  "github:jordansissel/fpm": 11509,
+  "github:AlexanderGrooff/mermaid-ascii": 1582,
+  "github:kiranwells/micro-nord-tc-colors": 47,
+  "github:micro-editor/micro": 29622,
+  "github:ekondis/mixbench": 465,
+  "github:gamemaker1/office-text-extractor": 85,
+  "npm:office-text-extractor": 114530,
+  "github:refined-github/refined-github": 32201,
+  "github:vercel/serve": 9903,
+  "npm:serve": 13987208
+}

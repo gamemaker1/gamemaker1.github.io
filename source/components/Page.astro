@@ -1,0 +1,131 @@
+---
+import '../global.css'
+
+const { title, description } = Astro.props
+
+const summary =
+  description ??
+  'Vedant Kulkarni is an undergraduate computer science student at ' +
+    'IIIT Hyderabad. He co-maintains express-rate-limit, and has ' +
+    'worked on AgentTorch with MIT Media Lab and on function calling ' +
+    'in Gemma 3 with Google DeepMind.'
+const canonical = new URL(Astro.url.pathname, Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>{title}</title>
+    <meta name="description" content={summary} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={summary} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      // Runs before first paint so the page never flashes the
+      // wrong theme.
+      ;(() => {
+        const key = 'theme'
+        const root = document.documentElement
+        const media = matchMedia('(prefers-color-scheme: dark)')
+        const read = () => {
+          try {
+            return localStorage.getItem(key)
+          } catch {
+            return null
+          }
+        }
+        const apply = () => {
+          const saved = read()
+          root.dataset.theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : media.matches
+                ? 'dark'
+                : 'light'
+        }
+        apply()
+        media.addEventListener('change', apply)
+
+        // The button cycles auto, light, dark. Auto is stored as no
+        // entry at all, so the page keeps following the system until
+        // told otherwise.
+        const cycle = { auto: 'light', light: 'dark', dark: 'auto' }
+        const wire = () => {
+          const button = document.getElementById('theme')
+          if (!button) return
+          const paint = () => {
+            const saved = read()
+            const mode =
+              saved === 'light' || saved === 'dark' ? saved : 'auto'
+            button.textContent = mode
+            button.setAttribute(
+              'aria-label',
+              `Theme: ${mode}. Switch to ${cycle[mode]}.`,
+            )
+          }
+          button.addEventListener('click', () => {
+            const saved = read()
+            const mode =
+              saved === 'light' || saved === 'dark' ? saved : 'auto'
+            const next = cycle[mode]
+            try {
+              if (next === 'auto') localStorage.removeItem(key)
+              else localStorage.setItem(key, next)
+            } catch {}
+            apply()
+            paint()
+          })
+          paint()
+        }
+        if (document.readyState === 'loading')
+          document.addEventListener('DOMContentLoaded', wire)
+        else wire()
+      })()
+    </script>
+    <noscript>
+      <!-- The button only works with scripting, so hide it and let the
+           system preference drive the theme. -->
+      <style>
+        .theme {
+          display: none;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <main class="page">
+      <slot />
+    </main>
+    <footer class="toolbar">
+      <hr />
+      <div class="row">
+        <span>
+          <slot name="back" />
+        </span>
+        <button id="theme" class="theme" type="button">
+          auto
+        </button>
+      </div>
+    </footer>
+  </body>
+</html>

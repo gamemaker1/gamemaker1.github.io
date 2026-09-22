@@ -1,0 +1,29 @@
+---
+import Page from '../components/Page.astro'
+import { author } from '../site'
+---
+
+<Page
+  title={`Not Found | ${author}`}
+  description="That page does not exist."
+>
+  <h1>Not Found</h1>
+  <div class="contacts">
+    <a href="/">home</a>
+    <span class="sep" aria-hidden="true">
+      |
+    </span>
+    <a href="/projects/">projects</a>
+    <span class="sep" aria-hidden="true">
+      |
+    </span>
+    <a href="/thoughts/">thoughts</a>
+  </div>
+
+  <hr />
+
+  <p>
+    There is nothing at this address. It may have moved, or the link
+    that brought you here may be wrong.
+  </p>
+</Page>

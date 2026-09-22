@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from 'astro:content'
+import Page from '../../components/Page.astro'
+import { author } from '../../site'
+
+export async function getStaticPaths() {
+  const writeups = await getCollection('writeups')
+  return writeups.map((writeup) => ({
+    params: { slug: writeup.id },
+    props: { writeup },
+  }))
+}
+
+const { writeup } = Astro.props
+const { Content } = await render(writeup)
+---
+
+<Page
+  title={`${writeup.data.title} | ${author}`}
+  description={writeup.data.description}
+>
+  <h1>{writeup.data.title}</h1>
+  <p class="byline">
+    <a href="/">{author}</a>
+  </p>
+
+  <hr />
+
+  <Content />
+
+  <a slot="back" href="/projects/">
+    Back to all projects
+  </a>
+</Page>

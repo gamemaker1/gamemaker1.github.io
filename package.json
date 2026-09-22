@@ -1,0 +1,23 @@
+{
+  "name": "gamemaker1.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "stats": "bun source/stats.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.8",
+    "prettier-plugin-astro": "^1.0.1",
+    "prettier-plugin-tailwindcss": "^0.8.1"
+  }
+}
